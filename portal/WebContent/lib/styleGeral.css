@@ -1,0 +1,770 @@
+@charset "UTF-8"; /*!* Source in minimum-src.css */
+@media screen {
+   html {
+      color: #000;
+      background: #f2f2d9;
+   }
+   /*body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend, p, input,textarea,blockquote,th,td,address{margin:0;padding:0;}*/
+   table {
+      border-collapse: collapse;
+      border-spacing: 0;
+   }
+   img {
+      border: 0;
+   }
+   body {
+      background-color: #f2f2d9;
+      padding: 0px 0px 0px 0px;
+      margin: 0px 0px 0px 0px;
+      text-align: justify;
+      font-family: "Helvetica Neue", Helvetica, Arial, Verdana, Geneva,
+         sans-serif;
+      font-size: 10pt;
+   }
+   ol, p {
+      margin: 0px;
+      padding: 0px;
+   }
+   .GlobalStyle {
+      width: 100%;
+      padding: 0px 0px 0px 0px;
+      margin: 0px 0px 0px 0px;
+      background-color: #f2f2d9;
+      border-top-color: #0090ff;
+      border-top-style: solid;
+      border-top-width: 1px;
+      font-family: "Helvetica Neue", Helvetica, Arial, Verdana, Geneva,
+         sans-serif;
+      font-size: 10pt;
+      color: #333;
+   }
+   .GlobalStyle .Topo {
+      width: 100%;
+      top: 1px;
+      background: white
+         url(http://sislegis.camarajatai.go.gov.br/portal/img/topo.jpg)
+         repeat-x;
+      text-align: right;
+      z-index: 99;
+   }
+   #logoTopo {
+      position: absolute;
+      float: left;
+      text-align: left;
+      width: 287px;
+      display: block;
+      left: 0px;
+      height: 115px;
+      background-image:
+         url(http://sislegis.camarajatai.go.gov.br/portal/img/lgTopo.png);
+      z-index: 99;
+   }
+   .GlobalStyle .Topo .Titulo {
+      color: #fff;
+      font-size: 18pt;
+      font-weight: bold;
+      font-variant: small-caps;
+   }
+   .GlobalStyle .Topo .SubTitulo {
+      background-color: #e2e2d2;
+      border-bottom-color: #0090ff;
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+   }
+   .GlobalStyle .Corpo {
+      background-color: #f2f2d9;
+   }
+   .GlobalStyle .Corpo .sislegis_leftCol {
+      display: block;
+      float: left;
+      padding-top: 39px;
+      width: 180px;
+      background-color: #e2e2d2;
+      text-align: left;
+      border-right-color: #0090ff;
+      border-right-style: solid;
+      border-right-width: 1px;
+      border-left-color: #0090ff;
+      border-left-style: solid;
+      border-left-width: 1px;
+      border-bottom-color: #0090ff;
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+   }
+   .GlobalStyle .Corpo .sislegis_rightCol {
+      display: block;
+      float: right;
+      width: 180px;
+      background-color: #f2f2d9; /*#e2e2d2*/
+      text-align: left;
+      border-color: #0090ff;
+      border-style: solid;
+      border-width: 1px;
+      margin: 10px 10px 10px 0px;
+   }
+   .GlobalStyle .Corpo .sislegis_mainCol {
+      overflow: hidden;
+      padding-left: 10px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      padding-right: 10px;
+      text-align: justify;
+      background-color: #f2f2d9;
+      background-image:
+         url('http://sislegis.camarajatai.go.gov.br/portal/img/logo1.png');
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-position: center 83px;
+   }
+   .GlobalStyle .Corpo .sislegis_mainCol .TopoBgForm {
+      background-color: white;
+      filter: alpha(opacity =   65);
+      -moz-opacity: 0.65;
+      -khtml-opacity: 0.65;
+      opacity: 0.65;
+   }
+   .GlobalStyle .Corpo .sislegis_mainCol .TopoBgForm a {
+      float: right;
+      height: 48px;
+   }
+   .Rodape {
+      clear: both;
+      width: 100%;
+      background-color: #e2e2d2;
+      color: #8282a2;
+      border-top-color: #a2a2b2;
+      border-top-style: dotted;
+      border-top-width: 1px;
+      border-bottom-color: #a2a2b2;
+      border-bottom-style: dotted;
+      border-bottom-width: 1px;
+      font-size: 9pt;
+      font-family: helvetica, sans-serif;
+      font-variant: small-caps;
+   }
+   .message_warning {
+      color: #ff0000;
+      padding: 5px;
+      margin: 10px;
+      border: 1px solid #900;
+      display: block;
+   }
+   .MsgRodape {
+      text-align: center;
+      color: #f00;
+      width: 100%;
+      font-size: 11pt;
+   }
+   .CorpoDocumento {
+      background-color: #ffffff;
+      padding: 5px;
+      background-image:
+         url('http://sislegis.camarajatai.go.gov.br/portal/img/logo1.png');
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-position: center 83px;
+   }
+   .ContainersRight {
+      position: relative;
+      background-color: white;
+      filter: alpha(opacity =   65);
+      -moz-opacity: 0.65;
+      -khtml-opacity: 0.65;
+      opacity: 0.65;
+   }
+   .ContainersRight .coment {
+      font-size: 0pt;
+      color: #aa6655;
+      background-color: #e2e2b2;
+      padding-left: 0px;
+      padding-right: 10px;
+   }
+   .ContainersRight a {
+      color: #000;
+      display: block;
+      font-size: 11pt;
+      font-family: helvetica;
+      text-decoration: none;
+      padding: 3px;
+      border-top-style: solid;
+      border-top-width: 1px;
+      border-top-color: #e2e2b2;
+   }
+   .ContainersRight a:hover {
+      color: #000;
+      background-color: #f2f2b2;
+      font-size: 11pt;
+   }
+   .ContainersLeft {
+      position: relative;
+      background-color: white;
+      margin-right: 0px;
+      filter: alpha(opacity =   65);
+      -moz-opacity: 0.65;
+      -khtml-opacity: 0.65;
+      opacity: 0.65;
+   }
+   .ContainersLeft a {
+      color: #000;
+      display: block;
+      font-size: 11pt;
+      text-decoration: none;
+      padding: 3px;
+      border-top-style: solid;
+      border-top-width: 1px;
+      border-top-color: #e2e2b2;
+      border-right-style: solid;
+      border-right-width: 1px;
+      border-right-color: #e2e2b2;
+   }
+   .ContainersLeft a:hover {
+      color: #002060;
+      background-color: #f2f2b2;
+      font-size: 11pt;
+   }
+   .ContainersLeft .coment {
+      font-size: 0pt;
+      color: #aa6633;
+      background-color: #e2e2b2;
+      border-right-style: solid;
+      border-right-width: 1px;
+      border-right-color: #e2e2b2;
+      padding-left: 10px;
+      padding-right: 10px;
+   }
+   .iface_titulo {
+      color: #0090ff;
+      font-weight: bold;
+      font-size: 10pt;
+      padding-left: 10px;
+      padding-bottom: 4px;
+      margin-bottom: 5px;
+      background-image:
+         url(http://sislegis.camarajatai.go.gov.br/portal/img/bgTituloPagina.jpg);
+      background-repeat: repeat-x;
+   }
+   .iface_titulo a {
+      color: #0090ff;
+      font-weight: bold;
+      font-size: 10pt;
+      padding: 0px;
+      border-top-width: 0px;
+      text-decoration: underline;
+   }
+   .iface_titulo a:hover {
+      color: #003070;
+      font-weight: bold;
+      font-size: 10pt;
+      text-decoration: underline;
+   }
+   .iface_titulo .linkPages {
+      font-size: 9pt;
+      color: #000;
+      font-weight: normal;
+      text-decoration: none;
+      border-left: 1px solid #c2c292;
+      padding-left: 7px;
+      padding-right: 3px;
+   }
+   .iface_titulo .linkPages:hover {
+      font-size: 10pt;
+      font-weight: normal;
+   }
+   .iface_titulo .linkPagesCorrente {
+      font-size: 10pt;
+      color: #0090ff;
+      font-weight: normal;
+      text-decoration: none;
+      border-left: 1px solid #c2c292;
+      padding-left: 7px;
+      padding-right: 3px;
+   }
+   .iface_titulo .linkPagesCorrente:hover {
+      font-size: 10pt;
+      font-weight: normal;
+   }
+   .iface_titulo .numbPages {
+      float: right;
+      text-align: right;
+      display: block;
+   }
+   .iface_titulo img {
+      margin-top: 2px;
+   }
+   .anexo {
+      font-size: 14pt;
+      text-align: center;
+      font-weight: bold;
+   }
+   .livro {
+      font-size: 14pt;
+      text-align: center;
+      font-weight: bold;
+   }
+   .titulo {
+      font-size: 14pt;
+      text-align: center;
+      font-weight: bold;
+   }
+   .capitulo {
+      font-size: 12pt;
+      text-align: center;
+      font-weight: bold;
+   }
+   .secao {
+      font-size: 11pt;
+      text-align: center;
+      font-weight: bold;
+   }
+   .subsecao {
+      font-size: 11pt;
+      text-align: center;
+      font-style: italic;
+      font-weight: bold;
+   }
+   .artigo {
+      font-size: 12pt;
+      margin-top: 8px;
+      margin-bottom: 5px;
+   }
+   .artigovar {
+      font-size: 12pt;
+      margin-top: 8px;
+      margin-bottom: 5px;
+   }
+   .paragrafo {
+      margin-left: 30px;
+      font-size: 11pt;
+      margin-top: 5px;
+      margin-bottom: 3px;
+   }
+   .par_unico {
+      margin-left: 30px;
+      font-size: 11pt;
+      margin-top: 5px;
+      margin-bottom: 3px;
+   }
+   .inciso {
+      font-size: 11pt;
+      margin-left: 60px;
+      margin-top: 5px;
+      margin-bottom: 3px;
+   }
+   .alinea {
+      font-size: 10pt;
+      margin-left: 90px;
+   }
+   .item {
+      font-size: 9pt;
+      margin-left: 100px;
+   }
+   .desativado, .desativado table {
+      text-decoration: line-through;
+      color: #777;
+   }
+   .desativado table, .desativado table td {
+      border: 1px dotted #ccc;;
+   }
+   .link_alterador {
+      color: #00f;
+      font-size: 9pt;
+   }
+   .novalei {
+      margin-left: 100px;
+      font-style: italic;
+      color: #018;
+   }
+   .texto_final {
+      font-size: 11pt;
+      margin-left: 50px;
+   }
+   .ementa {
+      font-size: 12pt;
+      margin-left: 50px;
+      margin-top: 10px;
+   }
+   .enunciado {
+      font-size: 12pt;
+      margin-top: 20px;
+   }
+   .preambulo {
+      font-size: 12pt;
+      margin-top: 20px;
+   }
+   .indicacao {
+      font-size: 12pt;
+      margin-left: 50px;
+      text-align: right;
+      color: #f00;
+      margin-top: 20px;
+   }
+   .epigrafe {
+      text-align: center;
+      font-size: 14pt;
+      font-weight: bold;
+   }
+   .assinatura {
+      text-align: left;
+      font-size: 11pt;
+   }
+   .assinante {
+      font-size: 80%;
+   }
+   .linkItens {
+      margin-top: 3px;
+      padding: 5px;
+      font-size: 11pt;
+      font-family: helvetica, sans-serif;
+      /*	border-style: dotted;
+	border-width: 1px;
+	border-color: #bbaa66;*/
+      background-color: #ffffff;
+   }
+   .linkItens:hover {
+      background-color: #f5f5e9;
+   }
+   .linkItens a {
+      font-size: 11pt;
+      line-height: 30px;
+      text-decoration: none;
+      color: #334488;
+   }
+   .linkItens a.link {
+      font-size: 11pt;
+      line-height: 30px;
+      text-decoration: none;
+      color: #334488;
+   }
+   .linkItens a.link:LINK {
+      color: #334488;
+   }
+   .linkItens a.link:VISITED {
+      color: #334488;
+   }
+   .linkItens a.link:HOVER {
+      color: #a00;
+   }
+   .linkItens .coment {
+      font-size: 11pt;
+      color: #aa9933;
+   }
+   .linkItens .docPub {
+      font-size: 8pt;
+      color: green;
+   }
+   .linkItens .docAssuntos {
+      font-size: 7pt;
+      color: green;
+   }
+   .linkItens .docPriv {
+      font-size: 8pt;
+      color: red;
+   }
+   .linkItensProcess {
+      margin-left: 25px;
+      border-top: 1px solid #c2c2a9;
+      border-left: 3px solid #f2e2e9;
+      background-color: #f2f2e9;
+      padding: 5px;
+   }
+   .linkItensProcess:hover {
+      background-color: #e2e2d9;
+   }
+   .contadores {
+      font-size: 8pt;
+      color: #aa9933;
+   }
+   .coment {
+      font-size: 9pt;
+      color: #aa6633;
+   }
+   form {
+      padding: 20px;
+      color: #0030aa;
+      font-size: 11pt;
+   }
+   form table {
+      width: 100%;
+      background-color: #f5f5f5;
+      border: 0px;
+   }
+   .materia .titulo {
+      text-align: center;
+      font-size: 16pt;
+      color: #aa6633;
+      font-weight: bold;
+      border-top: #aa6633 solid 1px;
+   }
+   .materia .subtitulo {
+      text-align: justify;
+      font-size: 15pt;
+      color: #aa8833;
+      font-weight: bold;
+      border-top: #aa8833 solid 1px;
+   }
+   .materia .paragraf {
+      text-align: justify;
+      font-size: 12pt;
+      text-indent: 2cm;
+      margin: 0px !important;
+   }
+   .materia .paragraf .boldcolor {
+      color: #aa8833;
+      font-size: 12pt;
+   }
+   .materia .links {
+      color: #aa8833;
+      font-size: 11pt;
+   }
+   .listaFuncsHead {
+      font-size: 9pt;
+      font-family: helvetica, sans-serif;
+      background-color: #e0e0c0;
+      text-align: center;
+   }
+   .listaFuncs {
+      font-size: 9pt;
+      font-family: helvetica, sans-serif;
+      background-color: #e0e0aa;
+   }
+   .listaFuncs:Hover {
+      background-color: #a0a090;
+   }
+   .listaFuncsOdd {
+      font-size: 9pt;
+      font-family: helvetica, sans-serif;
+      background-color: #ffffff;
+   }
+   .listaFuncs td, .listaFuncsHead {
+      border-left: 1px solid #aaa;
+   }
+   .listaFuncs td a {
+      padding: 3px;
+      display: block;
+      text-decoration: none;
+      color: #333;
+   }
+   .campoLabel {
+      display: inline-block;
+      float: left;
+      border: 1px solid #aaa;
+      margin: 5px;
+      padding: 5px;
+   }
+   #formBusca {
+      padding: 0px;
+      margin: 0px;
+      margin-bottom: 20px;
+   }
+   #formBusca fieldset {
+      border: 1px solid #aaa;
+   }
+   .icons {
+      height: 32px;
+      margin-left: 10px;
+      margin-right: 2px;
+      margin-bottom: 5px;
+      float: right;
+   }
+   .icons .pdf64 {
+      display: block;
+      height: 64px;
+      width: 64px;
+      background:
+         url(http://sislegis.camarajatai.go.gov.br/portal/img/pdf_icon.gif)
+         no-repeat;
+      float: right;
+   }
+   .icons .file64 {
+      display: block;
+      height: 64px;
+      width: 64px;
+      background:
+         url(http://sislegis.camarajatai.go.gov.br/portal/img/file64.png)
+         no-repeat;
+      float: right;
+   }
+   .icons .print64 {
+      display: block;
+      height: 64px;
+      width: 52px;
+      background:
+         url(http://sislegis.camarajatai.go.gov.br/portal/img/print_icon.gif)
+         no-repeat;
+      float: right;
+   }
+   .icons .pdf32 {
+      display: block;
+      height: 32px;
+      width: 32px;
+      background:
+         url(http://sislegis.camarajatai.go.gov.br/portal/img/pdf_icon32.gif)
+         no-repeat;
+      float: right;
+   }
+   .icons .file32 {
+      display: block;
+      height: 32px;
+      width: 32px;
+      background:
+         url(http://sislegis.camarajatai.go.gov.br/portal/img/file32.png)
+         no-repeat;
+      float: right;
+   }
+   .icons .print32 {
+      display: block;
+      height: 32px;
+      width: 27px;
+      background:
+         url(http://sislegis.camarajatai.go.gov.br/portal/img/print_icon32.gif)
+         no-repeat;
+      float: right;
+   }
+   .funcConsolida {
+      color: #a70;
+      float: left;
+   }
+   .filtroBusca {
+      background-color: #f00;
+      margin-top: -5px;
+   }
+}
+
+@media print {
+   p {
+      margin: 0px;
+      padding: 0px;
+   }
+   table {
+      border: 1px solid black;
+      padding: 0px;
+   }
+   .GlobalStyle .Topo {
+      position: fixed;
+      overflow: hidden;
+      height: 0px;
+   }
+   .GlobalStyle .Topo, .GlobalStyle .logoTopo, .GlobalStyle .Topo .Titulo,
+      .Menu, img, .funcConsolida, .sugestoes {
+      display: none;
+      height: 0px;
+   }
+   iframe {
+      display: none;
+   }
+   .anexo {
+      font-size: 14pt;
+      text-align: center;
+      font-weight: bold;
+   }
+   .livro {
+      font-size: 14pt;
+      text-align: center;
+      font-weight: bold;
+   }
+   .titulo {
+      font-size: 14pt;
+      text-align: center;
+      font-weight: bold;
+   }
+   .capitulo {
+      font-size: 12pt;
+      text-align: center;
+      font-weight: bold;
+   }
+   .secao {
+      font-size: 11pt;
+      text-align: center;
+      font-weight: bold;
+   }
+   .subsecao {
+      font-size: 11pt;
+      text-align: center;
+      font-style: italic;
+      font-weight: bold;
+   }
+   .artigo {
+      font-size: 12pt;
+      margin-top: 8px;
+      margin-bottom: 5px;
+   }
+   .artigovar {
+      font-size: 12pt;
+      margin-top: 8px;
+      margin-bottom: 5px;
+   }
+   .paragrafo {
+      margin-left: 30px;
+      font-size: 11pt;
+      margin-top: 5px;
+      margin-bottom: 3px;
+   }
+   .par_unico {
+      margin-left: 30px;
+      font-size: 11pt;
+      margin-top: 5px;
+      margin-bottom: 3px;
+   }
+   .inciso {
+      font-size: 11pt;
+      margin-left: 60px;
+      margin-top: 5px;
+      margin-bottom: 3px;
+   }
+   .alinea {
+      font-size: 10pt;
+      margin-left: 90px;
+   }
+   .item {
+      font-size: 9pt;
+      margin-left: 100px;
+   }
+   .desativado {
+      text-decoration: line-through;
+      color: #777;
+   }
+   .link_alterador {
+      color: #00f;
+      font-size: 9pt;
+   }
+   .novalei {
+      margin-left: 100px;
+      font-style: italic;
+      color: #018;
+   }
+   .texto_final {
+      font-size: 11pt;
+      margin-left: 50px;
+   }
+   .ementa {
+      font-size: 12pt;
+      margin-left: 50px;
+      margin-top: 10px;
+   }
+   .enunciado {
+      font-size: 12pt;
+      margin-top: 20px;
+   }
+   .indicacao {
+      font-size: 12pt;
+      margin-left: 50px;
+      text-align: right;
+      color: #f00;
+      margin-top: 20px;
+   }
+   .epigrafe {
+      text-align: center;
+      font-size: 14pt;
+      font-weight: bold;
+   }
+   .assinatura {
+      text-align: left;
+      font-size: 11pt;
+   }
+   .assinante {
+      font-size: 80%;
+   }
+   .funcConsolida {
+      display: none;
+   }
+}

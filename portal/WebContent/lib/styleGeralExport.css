@@ -1,0 +1,143 @@
+.texto .anexo {
+	font-size: 14pt;
+	text-align: center;
+	font-weight: bold;
+}
+
+.texto .livro {
+	font-size: 14pt;
+	text-align: center;
+	font-weight: bold;
+}
+
+.texto .titulo {
+	font-size: 14pt;
+	text-align: center;
+	font-weight: bold;
+}
+
+.texto .capitulo {
+	font-size: 12pt;
+	text-align: center;
+	font-weight: bold;
+}
+
+.texto .secao {
+	font-size: 11pt;
+	text-align: center;
+	font-weight: bold;
+}
+
+.texto .subsecao {
+	font-size: 11pt;
+	text-align: center;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.texto .artigo {
+	font-size: 12pt;
+	margin-top: 8px;
+	margin-bottom: 5px;
+}
+
+.texto .artigovar {
+	font-size: 12pt;
+	margin-top: 8px;
+	margin-bottom: 5px;
+}
+
+.texto .paragrafo {
+	margin-left: 30px;
+	font-size: 11pt;
+	margin-top: 5px;
+	margin-bottom: 3px;
+}
+
+.texto .par_unico {
+	margin-left: 30px;
+	font-size: 11pt;
+	margin-top: 5px;
+	margin-bottom: 3px;
+}
+
+.texto .inciso {
+	font-size: 11pt;
+	margin-left: 60px;
+	margin-top: 5px;
+	margin-bottom: 3px;
+}
+
+.texto .alinea {
+	font-size: 10pt;
+	margin-left: 90px;
+}
+
+.texto .item {
+	font-size: 9pt;
+	margin-left: 100px;
+}
+
+.texto .desativado, .texto .desativado table{
+	text-decoration: line-through;
+	color: #777;
+}
+.texto .desativado table, .texto .desativado table td{
+    border: 1px dotted #ccc;;
+}
+
+.texto .link_alterador {
+	color: #00f;
+	font-size: 9pt;
+}
+
+.texto .novalei {
+	margin-left: 100px;
+	font-style: italic;
+	color: #018;
+}
+
+.texto .texto_final {
+	font-size: 11pt;
+	margin-left: 50px;
+}
+
+.texto .ementa {
+	font-size: 12pt;
+	margin-left: 50px;
+	margin-top: 10px;
+}
+
+.texto .enunciado {
+	font-size: 12pt;
+	margin-top: 20px;
+}
+
+.texto .preambulo {
+	font-size: 12pt;
+	margin-top: 20px;
+}
+
+.texto .indicacao {
+	font-size: 12pt;
+	margin-left: 50px;
+	text-align: right;
+	color: #f00;
+	margin-top: 20px;
+}
+
+.texto .epigrafe {
+	text-align: center;
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+.texto .assinatura {
+	text-align: left;
+	font-size: 11pt;
+}
+
+.texto .assinante {
+	font-size: 80%;
+}
+ 

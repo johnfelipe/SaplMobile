@@ -1,0 +1,145 @@
+
+@charset "utf-8";
+
+/*
+   1. a:link........define o estilo do link no estado inicial;
+   2. a:visited...define o estilo do link visitado;
+   3. a:hover.....define o estilo do link quando passa-se o mouse sobre ele;
+   4. a:active....define o estilo do link ativo (o que foi "clicado").
+*/
+@media screen {
+
+.GlobalStyle .Menu {
+	position: relative;
+	width: 179px;
+	background-color: #f2f2d9;
+    border-right: 1px dotted #e2e2d2; 
+	float:left;	
+	z-index: 98;
+	
+}
+
+.GlobalStyle .Menu div {
+	color: #000;
+	font-weight: bold;
+	font-size: 10pt;
+	background-color: #d2d2c2;
+	padding-left: 0px;
+	padding-top: 3px;
+	padding-bottom: 2px;
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	text-indent: 5px;
+	background-image: url("http://sislegis.camarajatai.go.gov.br/portal/img/bgtitulo.jpg");
+		
+	
+	
+}
+
+
+.GlobalStyle .Menu div a {
+  color: #0090ff;
+  font-weight: bold;
+  font-size: 10pt;
+  padding: 0px; 
+  border-top-width: 0px;
+  text-decoration: underline;
+  
+}
+
+.GlobalStyle .Menu div a:hover {
+  color: #003070;
+  font-weight: bold;
+  font-size: 10pt;
+  text-decoration: underline;
+}
+
+ul.onglets-vert {
+	padding-left: 0px;
+}
+
+ul.onglets-vert li {
+	list-style: none;
+	
+	border-bottom: 1px solid #FFF;
+}
+
+ul.onglets-vert li a {
+	display: block;	
+	color: #aa6633;
+	text-decoration: none;
+	text-indent: 7px;
+	
+	padding-top: 3px;
+	padding-bottom: 2px;
+	padding-left: 0px;
+	padding-right: 2px;
+	border-bottom: 1px solid #d2d2c2;	
+	/*background-image: url("http://sislegis.camarajatai.go.gov.br/portal/img/bgmenu.jpg");*/	
+}
+
+ul.onglets-vert li a:hover {
+	color: #805030;
+	/*background-image: url("http://sislegis.camarajatai.go.gov.br/portal/img/bgmenuInverso.jpg");*/
+	text-indent: 8px;
+	font-weight: bold;
+}
+
+ul.onglets-vert li ul {
+	margin: 0;
+	padding: 0 0 0 0;
+	margin: -20px 0 0 0;
+	background-color: #e2e2d2;
+}
+
+ul.onglets-vert li ul li {
+	float: none;
+	border-bottom: 1px solid #FFF;
+	background-color: #e2e2d2;
+}
+
+ul.onglets-vert li ul li a {
+	display: block;
+	text-transform: none;
+	background-image: url("http://sislegis.camarajatai.go.gov.br/portal/img/bgmenu.jpg");
+}
+
+ul.onglets-vert li ul li a:hover {
+	color: #805030;
+	background-image: url("http://sislegis.camarajatai.go.gov.br/portal/img/bgmenuInverso.jpg");
+}
+
+ul.onglets-vert li ul li ul {
+	padding: 0 0 0 0;
+	background-color: #e2e2d2;
+}
+
+ul.onglets-vert li ul li ul li {
+	float: none;
+	border: 0;
+	background-color: #e2e2d2;
+}
+
+ul.onglets-vert li ul li ul li a {
+	display: block;
+	text-transform: none;
+		color: #805030;
+	background-image: url("http://sislegis.camarajatai.go.gov.br/portal/img/bgmenu.jpg");
+}
+
+ul.onglets-vert li ul li ul li a:hover {
+	background-image: url("http://sislegis.camarajatai.go.gov.br/portal/img/bgmenuInverso.jpg");
+	
+}
+}
+
+
+@media print {
+
+.GlobalStyle .Menu {
+	
+	display:none;
+	
+
+	}
+}
