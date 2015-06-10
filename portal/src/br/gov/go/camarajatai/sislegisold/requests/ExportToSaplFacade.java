@@ -475,8 +475,8 @@ public class ExportToSaplFacade extends HttpServlet {
 
 			private void exportarDispositivosV2(Statement stm, Documento doc)
 					throws SQLException {
-				
-				
+
+
 				// Segunda versão
 				Seeker.getInstance().upDateCollectionItensDeLei(doc);
 
@@ -536,26 +536,26 @@ public class ExportToSaplFacade extends HttpServlet {
 
 						sql = "INSERT INTO dispositivo (" + "`cod_dispositivo`, "
 								+ "`cod_norma`, "
-								+ "`cod_ordem`, "
-								+ "`disp_nivel`, "
-								+ "`disp_num0`, "
-								+ "`disp_num1`, "
-								+ "`disp_num2`, "
-								+ "`disp_num3`, "
-								+ "`disp_num4`, "
-								+ "`disp_num5`, "
-								+ "`disp_vinculado`, "
-								+ "`disp_rotulo`, "
-								+ "`disp_texto`, "
-								+ "`tip_dispositivo`, "
-								+ "`disp_dat_publicacao`, "
-								+ "`disp_dat_ini_vigencia`, "
-								+ "`disp_dat_fim_vigencia`, "
-								+ "`cod_disp_substituido`, "
-								+ "`cod_disp_sequente`, "
-								+ "`cod_norma_atualizador`, "
-								+ "`cod_disp_atualizador`, "
-								+ "`link_disp_atualizador` ) values "
+								+ "`num_ordem`, "
+								+ "`num_nivel`, "
+								+ "`num_dispositivo_0`, "
+								+ "`num_dispositivo_1`, "
+								+ "`num_dispositivo_2`, "
+								+ "`num_dispositivo_3`, "
+								+ "`num_dispositivo_4`, "
+								+ "`num_dispositivo_5`, "
+								+ "`cod_dispositivo_pai`, "
+								+ "`txt_rotulo`, "
+								+ "`txt_texto`, "
+								+ "`cod_tipo_dispositivo`, " 
+								+ "`dat_inicio_vigencia`, "
+								+ "`dat_fim_vigencia`, "
+								+ "`dat_inicio_eficacia`, "
+								+ "`dat_fim_eficacia`, "
+								/*+ "`cod_disp_substituido`, "
+								+ "`cod_disp_sequente`, "*/
+								+ "`cod_norma_publicada`, "
+								+ "`cod_dispositivo_atualizador` ) values "
 								+ "(" + il.getId()
 								+ ", "
 								+ doc.getId()
@@ -584,32 +584,33 @@ public class ExportToSaplFacade extends HttpServlet {
 								+ ", "
 								+ "''"
 								+ ", "
-
-				              + il.getTipoSapl()
-				              + ", '"
-				              + il.getData_inclusao()
-				              + "', '"
-				              + il.getData_inclusao()
-				              + "',  "
-				              + fimVigencia
-				              + " , "
-				              + (il.getId_alterador() != il.getId_lei() && !il.getIncluido() && ordem >= 2 ? collection.get(ordem - 2).getId() : 0)
+								+ il.getTipoSapl()
+								+ ", '" 
+								+ il.getData_inclusao()
+								+ "',  "
+								+ fimVigencia 
+								+ ", '" 
+								+ il.getData_inclusao()
+								+ "',  "
+								+ fimVigencia
+								+ " , "
+								/*+ (il.getId_alterador() != il.getId_lei() && !il.getIncluido() && ordem >= 2 ? collection.get(ordem - 2).getId() : 0)
 				              + " , "
 				              + (((il.getRevogado() || il.getAlterado()) && ordem < collection.size()) ? collection.get(ordem).getId() : 0)
 				              + " , "
-				              + (il.getId_alterador() == il.getId_lei() ? 0 : il.getId_alterador())
-				              + ", "
-				              + il.getId_dono()
-				              + ", "
-				              + (il.getLink_alterador() == null ? "NULL" : "'" + il.getLink_alterador() + "'")
-				              + ");";
+								 */+ (il.getId_alterador() == il.getId_lei() ? 0 : il.getId_alterador())
+								 + ", "
+								 + il.getId_dono()
+								 /* + ", "
+				              + (il.getLink_alterador() == null ? "NULL" : "'" + il.getLink_alterador() + "'")*/
+								 + ");";
 						// System.out.println(sql);
 						stm.execute(sql);
 
 						il.setTexto(il.getTexto().replace("", "\""));
 						il.setTexto(il.getTexto().replace("", "\""));
 
-						sql = "update dispositivo set disp_texto = ? " + "where cod_dispositivo = " + il.getId() + ";";
+						sql = "update dispositivo set txt_texto = ? " + "where cod_dispositivo = " + il.getId() + ";";
 						PreparedStatement pStm = MySqlConnection.getInstance().con.prepareStatement(sql);
 						pStm.setString(1, il.getTexto());
 						pStm.execute();
@@ -803,11 +804,16 @@ public class ExportToSaplFacade extends HttpServlet {
 		th.start();
 		try {
 			th.join();
-
+			/*
 			if (iddoc != null) {
 				response.sendRedirect("http://10.3.163.1/portal/seeker?iddoc=" + iddoc);
 			} else
 				response.sendRedirect("http://10.3.163.1/portal/seeker");
+			 */
+			if (iddoc != null) {
+				response.sendRedirect("http://localhost:8080/portal/seeker?iddoc=" + iddoc);
+			} else
+				response.sendRedirect("http://localhost:8080/portal/seeker");
 
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block

@@ -176,49 +176,49 @@ public class Itemlei extends Dto implements Serializable {
             case 100:
                 return 1;
             case 150:
-                return 1;
-            case 200:
-                return 3;
-            case 300:
-                return 2;
-            case 400:
-                return 4;
-            case 500:
-                return 5;
-            case 550:
-                return 5;
-            case 600:
-                return 6;
-            case 650:
-                return 6;
-            case 700:
-                return 7;
-            case 750:
-                return 8;
-            case 800:
-                return 9;
-            case 900:
-                return 9;
-            case 1000:
-                return 10;
-            case 1001:
                 return 11;
-            case 1100:
+            case 200:
                 return 12;
-            case 1150:
-                return 12;
-            case 1175:
-                return 12;
-            case 1200:
+            case 300:
                 return 13;
+            case 400:
+                return 14;
+            case 500:
+                return 15;
+            case 550:
+                return 15;
+            case 600:
+                return 16;
+            case 650:
+                return 16;
+            case 700:
+                return 17;
+            case 750:
+                return 18;
+            case 800:
+                return 19;
+            case 900:
+                return 19;
+            case 1000:
+                return 20;
+            case 1001:
+                return 20;
+            case 1100:
+                return 21;
+            case 1150:
+                return 21;
+            case 1175:
+                return 21;
+            case 1200:
+                return 22;
             case 1300:
-                return 14;
+                return 23;
             case 1400:
-                return 14;
+                return 23;
             case 1500:
-                return 14;
+                return 23;
             default:
-                return 14;
+                return 4;
         }
     }
 
