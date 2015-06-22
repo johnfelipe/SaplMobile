@@ -27,7 +27,8 @@ public class CollectionItensDeLei extends LinkedList<Itemlei> {
 	public static void generateNiveis() {
 		
 		niveis.clear();
-		
+
+		niveis.put(50, "articulacao");
 		niveis.put(100, "numero");
 		niveis.put(150, "anexo");
 		niveis.put(200, "livro");
@@ -41,6 +42,7 @@ public class CollectionItensDeLei extends LinkedList<Itemlei> {
 		niveis.put(750, "secao .item");
 		niveis.put(800, "artigo");
 		niveis.put(900, "artigovar");
+		niveis.put(950, "caput");
 		niveis.put(1000, "paragrafo");
 		niveis.put(1001, "par_unico");
 		niveis.put(1100, "inciso");
@@ -50,6 +52,7 @@ public class CollectionItensDeLei extends LinkedList<Itemlei> {
 		niveis.put(1300, "item");	
 		niveis.put(1400, "item .sub");	
 		niveis.put(1500, "item .sub .sub");	
+		niveis.put(2000, "ementa");	
 
 	}
 	public static Integer keyForValue(String value) {
@@ -68,7 +71,10 @@ public class CollectionItensDeLei extends LinkedList<Itemlei> {
 		
 		return result;
 	}
-	
+
+	public ListIterator<Itemlei>  getIteratorAtual() {
+		return itCollection;
+	}
 	public void firstItem() {
 		itCollection = listIterator();
 	}
@@ -81,10 +87,15 @@ public class CollectionItensDeLei extends LinkedList<Itemlei> {
 		return itCollection.hasNext();
 		
 	}
-	
+
 	public Itemlei next() {
 		
 		Itemlei itemlei = itCollection.next();		
+		return itemlei;
+	}
+	public Itemlei previous() {
+		
+		Itemlei itemlei = itCollection.previous();		
 		return itemlei;
 	}
 	

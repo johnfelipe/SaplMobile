@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TreeMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -80,7 +81,14 @@ public class ExportToSaplFacade extends HttpServlet {
 
 		final String tipo = tip;
 
+
+
 		Thread th = new Thread(new Runnable() {
+
+
+
+
+			TreeMap<Integer, Integer> codOrdemBlocos = new TreeMap<Integer, Integer>();
 
 			@Override
 			public void run() {
@@ -295,7 +303,7 @@ public class ExportToSaplFacade extends HttpServlet {
 							}
 						} 
 
-						exportarDispositivosV2(stm, doc);
+						exportarDispositivosV2(stm, doc, codOrdemBlocos);
 
 						if (tipo.equals("C") || tipo.equals("T")) {
 							// URL url = new
@@ -471,9 +479,10 @@ public class ExportToSaplFacade extends HttpServlet {
 					System.out.println(e.toString());
 				}
 
+				System.out.println();
 			}
 
-			private void exportarDispositivosV2(Statement stm, Documento doc)
+			private void exportarDispositivosV2(Statement stm, Documento doc, TreeMap<Integer, Integer> codOrdemBlocos)
 					throws SQLException {
 
 
@@ -486,7 +495,10 @@ public class ExportToSaplFacade extends HttpServlet {
 
 				LinkedList<Itemlei> paiAtual = new LinkedList<Itemlei>();
 				int ordem = 0;
+				int codordem = 0;
+				int codordembloco = 0;
 				int nivelOld = 0;
+				int articulacao = 0;
 
 				stm.execute("delete from dispositivo where cod_norma = " + doc.getId());
 				System.out.print("  :" + doc.getNumero());
@@ -494,28 +506,143 @@ public class ExportToSaplFacade extends HttpServlet {
 				if (doc.getNumero() % 10 == 0)
 					System.out.println();
 
+				if (collection.isEmpty())
+					return;
+
+
+ 
+				
+				collection.firstItem();
 				while (collection.hasNext()) {
 
 					il = collection.next();
 
 					if (il.getId_lei() != doc.getId())
 						continue;
+					
+					if (articulacao == 0) {
+						Itemlei ilArticulacao = null;
+						ilArticulacao = Itemlei.clone(il);
+						ilArticulacao.setId(0);
+						ilArticulacao.setNivel(50);  // nivel virtual para articulação
+						ilArticulacao.organize();
+						ilArticulacao.setCodigo(2);
+						ilArticulacao.setTexto("");
+						ilArticulacao.setAlterado(false);
+						ilArticulacao.setIncluido(false);
+						ilArticulacao.setRevogado(false);
+						ilArticulacao.setId_alterador(doc.getId());
+						ilArticulacao.setId_lei(doc.getId());
+						ilArticulacao.setData_inclusao(doc.getData_lei());
+						ilArticulacao.setData_alteracao(doc.getData_lei());
+						ilArticulacao.setId_dono(0); 
+						collection.addFirst(ilArticulacao);
+						
 
-					if (il.getNivel() <= nivelOld) {
-						while (!paiAtual.isEmpty() && paiAtual.getLast().getNivel() >= il.getNivel())
+						Itemlei ilEmenta = null;
+						ilEmenta = Itemlei.clone(collection.getFirst());
+						ilEmenta.setId(0);
+						ilEmenta.setNivel(2000);  // nivel virtual para articulação
+						ilEmenta.organize();
+						ilEmenta.setCodigo(1);
+
+						ilEmenta.setTexto(doc.getEmenta());
+						ilEmenta.setAlterado(false);
+						ilEmenta.setIncluido(false);
+						ilEmenta.setRevogado(false);
+						ilEmenta.setId_alterador(doc.getId());
+						ilEmenta.setId_lei(doc.getId());
+						ilEmenta.setData_inclusao(doc.getData_lei());
+						ilEmenta.setData_alteracao(doc.getData_lei());
+						ilEmenta.setId_dono(0); 
+						collection.addFirst(ilEmenta);
+						
+						ilArticulacao = null;
+						ilArticulacao = Itemlei.clone(collection.getFirst());
+						ilArticulacao.setId(0);
+						ilArticulacao.setNivel(50);  // nivel virtual para articulação
+						ilArticulacao.organize();
+						ilArticulacao.setCodigo(1);
+						ilArticulacao.setTexto("");
+						ilArticulacao.setAlterado(false);
+						ilArticulacao.setIncluido(false);
+						ilArticulacao.setRevogado(false);
+						ilArticulacao.setId_alterador(doc.getId());
+						ilArticulacao.setId_lei(doc.getId());
+						ilArticulacao.setData_inclusao(doc.getData_lei());
+						ilArticulacao.setData_alteracao(doc.getData_lei());
+						ilArticulacao.setId_dono(0); 
+						collection.addFirst(ilArticulacao);
+						
+						
+						collection.firstItem();
+						articulacao = 2;
+						continue;
+					}
+					else if (articulacao - 2 != il.getAnexo()  && il.getAnexo() == 1) {
+						Itemlei ilArticulacao = null;
+						ilArticulacao = Itemlei.clone(il);
+						ilArticulacao.setId(0);
+						ilArticulacao.setNivel(50);  // nivel virtual para articulação
+						ilArticulacao.organize();
+						ilArticulacao.setCodigo(++articulacao);
+						ilArticulacao.setTexto("");
+						ilArticulacao.setAlterado(false);
+						ilArticulacao.setIncluido(false);
+						ilArticulacao.setRevogado(false);
+						ilArticulacao.setId_alterador(doc.getId());
+						ilArticulacao.setId_lei(doc.getId());
+						ilArticulacao.setData_inclusao(doc.getData_lei());
+						ilArticulacao.setData_alteracao(doc.getData_lei());
+						ilArticulacao.setId_dono(0);
+						collection.previous();
+						collection.getIteratorAtual().add(ilArticulacao); 
+						collection.previous();
+						continue;
+					}
+					
+					
+					
+					
+					
+
+					if (il.getNivelToSapl() <= nivelOld) {
+						while (!paiAtual.isEmpty() && paiAtual.getLast().getNivelToSapl() >= il.getNivelToSapl())
 							paiAtual.pollLast();
 
 						if (paiAtual.size() > 0)
-							nivelOld = paiAtual.getLast().getNivel();
+							nivelOld = paiAtual.getLast().getNivelToSapl();
 					}
 					String sql = "";
 					try {
 						++ordem;
-						if (il.getId_lei() != il.getId_alterador())
+						codordem = codordem + 1000;
+
+						if (il.getId_lei() != il.getId_alterador()) { 						
 							il.setData_inclusao(Seeker.getInstance().leiDao.selectOne(new Documento(il.getId_alterador())).getData_lei());
-						else {
+
+
+							Integer idDono = new Integer(il.getId_dono());
+							Integer value = 0;
+							if (codOrdemBlocos.containsKey(idDono)) {
+
+								value = new Integer(codOrdemBlocos.get(idDono) + 1000);
+								codOrdemBlocos.replace(idDono, value);
+							}
+							else {
+
+								value = new Integer(1000);
+								codOrdemBlocos.put(idDono, value);
+							}
+
+							codordembloco = value;
+
+						}
+						else {  
+							codordembloco = 0;
 							il.setData_inclusao(doc.getData_lei());
 						}
+
 						Seeker.getInstance().itemleiDao.update(il);
 
 						String fimVigencia = "";
@@ -529,101 +656,44 @@ public class ExportToSaplFacade extends HttpServlet {
 							g.setTimeInMillis(data.getTime());
 							g.add(GregorianCalendar.DAY_OF_MONTH, -1);
 
-							fimVigencia = "'" + new Timestamp(g.getTimeInMillis()) + "'";
-
+							fimVigencia = "'" + new Timestamp(g.getTimeInMillis()) + "'"; 
 						} else
 							fimVigencia = "NULL";
 
-						sql = "INSERT INTO dispositivo (" + "`cod_dispositivo`, "
-								+ "`cod_norma`, "
-								+ "`num_ordem`, "
-								+ "`num_nivel`, "
-								+ "`num_dispositivo_0`, "
-								+ "`num_dispositivo_1`, "
-								+ "`num_dispositivo_2`, "
-								+ "`num_dispositivo_3`, "
-								+ "`num_dispositivo_4`, "
-								+ "`num_dispositivo_5`, "
-								+ "`cod_dispositivo_pai`, "
-								+ "`txt_rotulo`, "
-								+ "`txt_texto`, "
-								+ "`cod_tipo_dispositivo`, " 
-								+ "`dat_inicio_vigencia`, "
-								+ "`dat_fim_vigencia`, "
-								+ "`dat_inicio_eficacia`, "
-								+ "`dat_fim_eficacia`, "
-								/*+ "`cod_disp_substituido`, "
-								+ "`cod_disp_sequente`, "*/
-								+ "`cod_norma_publicada`, "
-								+ "`cod_dispositivo_atualizador` ) values "
-								+ "(" + il.getId()
-								+ ", "
-								+ doc.getId()
-								+ ", "
-								+ (ordem)
-								+ ", "
-								+ paiAtual.size()
-								+ ", "
-								+ (((Integer) il.getCodigo()) >= 9999 ? 1 : il.getCodigo())
-								+ ", "
-								+ (il.getNivel() == 900 ? il.getArtigovar() : 0)
-								+ ", "
-								+ 0
-								+ ", "
-								+ 0
-								+ ", "
-								+ 0
-								+ ", "
-								+ 0
-								+ ", "
-								+ (paiAtual.size() == 0 ? 0 : paiAtual.getLast().getId())
-								+ ", "
-								+ "'"
-								+ il.getNomeclaturaToSapl()
-								+ "'"
-								+ ", "
-								+ "''"
-								+ ", "
-								+ il.getTipoSapl()
-								+ ", '" 
-								+ il.getData_inclusao()
-								+ "',  "
-								+ fimVigencia 
-								+ ", '" 
-								+ il.getData_inclusao()
-								+ "',  "
-								+ fimVigencia
-								+ " , "
-								/*+ (il.getId_alterador() != il.getId_lei() && !il.getIncluido() && ordem >= 2 ? collection.get(ordem - 2).getId() : 0)
-				              + " , "
-				              + (((il.getRevogado() || il.getAlterado()) && ordem < collection.size()) ? collection.get(ordem).getId() : 0)
-				              + " , "
-								 */+ (il.getId_alterador() == il.getId_lei() ? 0 : il.getId_alterador())
-								 + ", "
-								 + il.getId_dono()
-								 /* + ", "
-				              + (il.getLink_alterador() == null ? "NULL" : "'" + il.getLink_alterador() + "'")*/
-								 + ");";
-						// System.out.println(sql);
-						stm.execute(sql);
+						if (il.getNivelToSapl() == 800) { 
+							
+							Itemlei caput = Itemlei.clone(il);
+							collection.getIteratorAtual().add(caput);
+							collection.previous();
+							
+							caput.setId(0);
+							caput.setNivel(950);
+							caput.setCodigo(1);
+							
+							il.setTexto("");
+							sql = insertItem(stm, doc, il, paiAtual, codordem, codordembloco, fimVigencia);
+ 
+							
+						} else {
 
-						il.setTexto(il.getTexto().replace("", "\""));
-						il.setTexto(il.getTexto().replace("", "\""));
-
-						sql = "update dispositivo set txt_texto = ? " + "where cod_dispositivo = " + il.getId() + ";";
-						PreparedStatement pStm = MySqlConnection.getInstance().con.prepareStatement(sql);
-						pStm.setString(1, il.getTexto());
-						pStm.execute();
+							sql = insertItem(stm, doc, il, paiAtual, codordem, codordembloco, fimVigencia);
+ 
+							//collection.getIteratorAtual()
+							
+						}
+						
 
 						if (paiAtual.size() == 0) {
-							nivelOld = il.getNivel();
+							nivelOld = il.getNivelToSapl();
 							paiAtual.add(il);
 						} else {
-							if (il.getNivel() > nivelOld) {
-								nivelOld = il.getNivel();
+							if (il.getNivelToSapl() > nivelOld) {
+								nivelOld = il.getNivelToSapl();
 								paiAtual.add(il);
 							}
 						}
+						
+						
 
 					} catch (Exception e) {
 
@@ -637,7 +707,114 @@ public class ExportToSaplFacade extends HttpServlet {
 						// e.printStackTrace();
 					}
 				}
+
+
 			}
+
+			private String insertItem(Statement stm, Documento doc, Itemlei il,
+					LinkedList<Itemlei> paiAtual, int codordem,
+					int codordembloco, String fimVigencia) throws SQLException {
+				String sql;
+				sql = "INSERT INTO dispositivo (" 
+						+ (il.getId() != 0 ?"`cod_dispositivo`, ":"") 
+						+ "`cod_norma`, " 
+						+ "`num_ordem`, "
+						+ "`num_ordem_bloco_atualizador`, "
+						+ "`num_nivel`, "
+						+ "`num_dispositivo_0`, "
+						+ "`num_dispositivo_1`, "
+						+ "`num_dispositivo_2`, "
+						+ "`num_dispositivo_3`, "
+						+ "`num_dispositivo_4`, "
+						+ "`num_dispositivo_5`, "
+						+ "`cod_dispositivo_pai`, "
+						+ "`txt_rotulo`, "
+						+ "`txt_texto`, "
+						+ "`cod_tipo_dispositivo`, " 
+						+ "`dat_inicio_vigencia`, "
+						+ "`dat_fim_vigencia`, "
+						+ "`dat_inicio_eficacia`, "
+						+ "`dat_fim_eficacia`, "
+						/*+ "`cod_disp_substituido`, "
+						+ "`cod_disp_sequente`, "*/
+						+ "`cod_norma_publicada`, "
+						+ "`cod_dispositivo_atualizador` ) values "
+						+ "(" +  (il.getId() != 0 ? il.getId()+ ", ": "")
+
+						+ (il.getId_alterador() == il.getId_lei() ? doc.getId() : il.getId_lei())
+						+ ", "
+						+ (codordem)
+						+ ", "
+						+ (codordembloco)
+						+ ", "
+						+ paiAtual.size()
+						+ ", "
+						+ il.getVar(0)
+						+ ", "
+						+ il.getVar(1)
+						+ ", "
+						+ il.getVar(2)
+						+ ", "
+						+ il.getVar(3)
+						+ ", "
+						+ il.getVar(4)
+						+ ", "
+						+ il.getVar(5)
+						+ ", "
+						+ (paiAtual.size() == 0 ? 0 : paiAtual.getLast().getId())
+						+ ", "
+						+ "'"
+						+ il.getNomeclaturaToSapl()
+						+ "'"
+						+ ", "
+						+ "''"
+						+ ", "
+						+ il.getTipoSapl()
+						+ ", '" 
+						+ il.getData_inclusao()
+						+ "',  "
+						+ fimVigencia 
+						+ ", '" 
+						+ il.getData_inclusao()
+						+ "',  "
+						+ fimVigencia
+						+ " , "
+						/*+ (il.getId_alterador() != il.getId_lei() && !il.getIncluido() && ordem >= 2 ? collection.get(ordem - 2).getId() : 0)
+				      + " , "
+				      + (((il.getRevogado() || il.getAlterado()) && ordem < collection.size()) ? collection.get(ordem).getId() : 0)
+				      + " , "
+						 */+ (il.getId_alterador() == il.getId_lei() ? 0 : il.getId_alterador())
+						 + ", "
+						 + il.getId_dono()
+						 /* + ", "
+				      + (il.getLink_alterador() == null ? "NULL" : "'" + il.getLink_alterador() + "'")*/
+						 + ");";
+				// System.out.println(sql);
+				stm.execute(sql);
+
+
+				if (il.getId() == 0) { 
+
+					ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID();");
+					rs.next();
+					il.setId(rs.getInt(1));
+					
+				}
+
+				if (il.getId() != 0) {
+					il.setTexto(il.getTexto().replace("", "\""));
+					il.setTexto(il.getTexto().replace("", "\""));
+
+					sql = "update dispositivo set txt_texto = ? " + "where cod_dispositivo = " + il.getId() + ";";
+					PreparedStatement pStm = MySqlConnection.getInstance().con.prepareStatement(sql);
+					pStm.setString(1, il.getTexto());
+					pStm.execute();
+				} 
+				
+				
+				return sql;
+			}
+			
 			private void exportarDispositivosV1(Statement stm, Documento doc)
 					throws SQLException {
 				// Primeira versão de exportação
@@ -664,12 +841,12 @@ public class ExportToSaplFacade extends HttpServlet {
 					if (il.getId_lei() != doc.getId())
 						continue;
 
-					if (il.getNivel() <= nivelOld) {
-						while (!paiAtual.isEmpty() && paiAtual.getLast().getNivel() >= il.getNivel())
+					if (il.getNivelToSapl() <= nivelOld) {
+						while (!paiAtual.isEmpty() && paiAtual.getLast().getNivelToSapl() >= il.getNivelToSapl())
 							paiAtual.pollLast();
 
 						if (paiAtual.size() > 0)
-							nivelOld = paiAtual.getLast().getNivel();
+							nivelOld = paiAtual.getLast().getNivelToSapl();
 					}
 					String sql = "";
 					try {
@@ -729,7 +906,7 @@ public class ExportToSaplFacade extends HttpServlet {
 								+ ", "
 								+ (((Integer) il.getCodigo()) >= 9999 ? 1 : il.getCodigo())
 								+ ", "
-								+ (il.getNivel() == 900 ? il.getArtigovar() : 0)
+								+ (il.getNivelToSapl() == 900 ? il.getArtigovar() : 0)
 								+ ", "
 								+ 0
 								+ ", "
@@ -778,11 +955,11 @@ public class ExportToSaplFacade extends HttpServlet {
 						pStm.execute();
 
 						if (paiAtual.size() == 0) {
-							nivelOld = il.getNivel();
+							nivelOld = il.getNivelToSapl();
 							paiAtual.add(il);
 						} else {
-							if (il.getNivel() > nivelOld) {
-								nivelOld = il.getNivel();
+							if (il.getNivelToSapl() > nivelOld) {
+								nivelOld = il.getNivelToSapl();
 								paiAtual.add(il);
 							}
 						}
@@ -839,7 +1016,7 @@ public class ExportToSaplFacade extends HttpServlet {
 
 				for (int i = 0; i < iddoc.length; i++)
 					try {
-						url = new URL("http://10.3.163.1/portal/toSapl?iddoc=" + iddoc[i] + "&tipo=" + tipo);
+						url = new URL("http://localhost:8080/portal/toSapl?iddoc=" + iddoc[i] + "&tipo=" + tipo);
 						// url = new
 						// URL("http://10.3.163.1/portal/toSapl?iddoc=" +
 						// iddoc + "&tipo=" + tipo);
@@ -869,7 +1046,7 @@ public class ExportToSaplFacade extends HttpServlet {
 					// url = new
 					// URL("http://localhost:8080/portal/toSapl?iddoc=" + iddoc
 					// + "&tipo=" + tipo);
-					url = new URL("http://10.3.163.1/portal/toSapl?iddoc=" + iddoc + "&tipo=" + tipo);
+					url = new URL("http://localhost:8080/portal/toSapl?iddoc=" + iddoc + "&tipo=" + tipo);
 					byte[] f = Suport.toByteVector(url.openStream());
 					System.gc();
 				} catch (Exception e) {

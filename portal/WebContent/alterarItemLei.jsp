@@ -1,6 +1,6 @@
 <%@page import="br.gov.go.camarajatai.sislegisold.suport.Urls"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%><%
+<%@ page language="java" contentType="text/html; charset=iso-8859-1"
+	pageEncoding="iso-8859-1"%><%
 Suport.validIntranet(request, response);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -25,8 +25,8 @@ Suport.validIntranet(request, response);
 <%@page import="br.gov.go.camarajatai.sislegisold.suport.Suport"%><html>
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>CÃ¢mara Municipal de JataÃ­ - Portal da TransparÃªncia PÃºblica</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<title>Câmara Municipal de Jataí - Portal da Transparência Pública</title>
 
 	<script type="text/javascript" src="<%=Urls.urlPortalSislegisBase%>lib/jquery.js"></script>
 		
@@ -76,7 +76,7 @@ boolean comMenu = true;
 		
 			<div class="sislegis_mainCol">
 			
-<div class="iface_titulo"><span>AlteraÃ§Ã£o de Itens de Lei</span></div>
+<div class="iface_titulo"><span>Alteração de Itens de Lei</span></div>
 <div>
 
 <%
@@ -110,9 +110,9 @@ boolean comMenu = true;
 <a class="link_alterador" href="<%=Urls.urlPortalSislegisOldBase%>alterarItemLei.jsp?itemlei=<%=il.getId()%>&editor=1">[Editar com CKEditor]</a>
 			
 		<form action="<%=Urls.urlPortalSislegisOldBase%>alterarItemLei" method="post">
-		Informe o nÃºmero do dispositivo alterador:&nbsp;&nbsp;<input type="text" name="id_dono" size="10"/><br>
+		Informe o número do dispositivo alterador:&nbsp;&nbsp;<input type="text" name="id_dono" size="10"/><br>
 		Nivel:&nbsp;&nbsp;<input type="text" name="nivel" size="10" value="<%=il.getNivel() %>"/><br><br>
-		Informe a nova redaÃ§Ã£o para:<br><br>
+		Informe a nova redação para:<br><br>
 		<%=il.getNomeclaturaCompleta()%><br>
 		<input type="hidden" name="id" value = "<%=il.getId() %>"/>
 		<!-- textarea rows="15" cols="80" name="texto" onkeyup="Javacript:document.getElementById('preview').innerHTML = this.value"><%=il.getTexto() %></textarea-->
